@@ -1,0 +1,55 @@
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}McDash{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            pop: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            primary: '#FF3E00',
+            secondary: '#FFEBD6',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/877/877951.png">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<nav class="bg-primary text-white p-4 flex justify-between items-center">
+  <div class="space-x-6">
+    <a href="{% url 'home' %}" class="font-bold">🏠 Home</a>
+    <a href="{% url 'dashboard' %}">📊 Dashboard</a>
+    <a href="{% url 'predict' %}">🔮 Predictor</a>
+    <a href="{% url 'menu_data' %}">📋 Menu</a>
+  </div>
+  <div>
+    {% if user.is_authenticated %}
+      <span class="mr-4">👋 {{ user.username }}</span>
+      <form method="post" action="{% url 'logout' %}" style="display:inline;">
+  {% csrf_token %}
+  <button type="submit" class="bg-white text-primary px-4 py-1 rounded-full">Logout</button>
+</form>
+
+    {% else %}
+      <a href="{% url 'login' %}" class="mr-4">Login</a>
+      <a href="{% url 'signup' %}" class="bg-white text-primary px-4 py-1 rounded-full">Sign Up</a>
+    {% endif %}
+  </div>
+</nav>
+

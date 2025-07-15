@@ -1,0 +1,42 @@
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}McDash{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            pop: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            primary: '#FF3E00',
+            secondary: '#FFEBD6',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/877/877951.png">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+{% include 'menu/nav.html' %}
+<section class="bg-gradient-to-br from-primary to-orange-300 min-h-screen flex items-center justify-center">
+  <div class="text-center text-white px-4">
+    <h1 class="text-6xl font-extrabold mb-4 drop-shadow-xl">🍔 Welcome to McDash</h1>
+    <p class="text-xl text-white/80 max-w-xl mx-auto">Your one-stop dashboard for McDonald's menu insights, predictions & more.</p>
+    <a href="{% url 'dashboard' %}" class="mt-6 inline-block bg-white text-primary font-bold px-6 py-3 rounded-xl shadow hover:bg-yellow-200 transition">Explore Dashboard →</a>
+  </div>
+</section>
+

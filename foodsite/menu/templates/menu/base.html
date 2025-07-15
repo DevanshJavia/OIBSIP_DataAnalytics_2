@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}🍔 McDash{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/877/877951.png" />
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #fefefe;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-100">
+    <nav class="bg-yellow-400 text-white shadow px-6 py-4 mb-6">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold">🍔 McDash</h1>
+        <div>
+          <a href="/" class="px-4 hover:underline">Home</a>
+          <a href="/dashboard/" class="px-4 hover:underline">Dashboard</a>
+          <a href="/predict/" class="px-4 hover:underline">Predict</a>
+          <a href="/menu-data/" class="px-4 hover:underline">Menu Data</a>
+          <a href="/logout/" class="px-4 hover:underline">Logout</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4">
+      {% block content %}
+      {% endblock %}
+    </main>
+  </body>
+</html>

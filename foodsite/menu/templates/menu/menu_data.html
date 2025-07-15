@@ -1,0 +1,57 @@
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}McDash{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            pop: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            primary: '#FF3E00',
+            secondary: '#FFEBD6',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/877/877951.png">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+{% include 'menu/nav.html' %}
+<div class="p-6 bg-gray-100 min-h-screen">
+  <h2 class="text-2xl font-bold mb-4">📋 Filter Menu Data</h2>
+
+  <form method="get" class="mb-6">
+    <div class="flex flex-wrap gap-4">
+      {% for cat in categories %}
+        <label class="inline-flex items-center">
+          <input type="checkbox" name="category" value="{{ cat }}" class="mr-2"
+                 {% if cat in selected_categories %}checked{% endif %}>
+          {{ cat }}
+        </label>
+      {% endfor %}
+    </div>
+    <button type="submit" class="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-orange-600">
+      Apply Filter
+    </button>
+  </form>
+
+  <div class="overflow-auto bg-white p-4 rounded shadow">
+    {{ table|safe }}
+  </div>
+</div>
+

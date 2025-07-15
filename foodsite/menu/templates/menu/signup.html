@@ -1,0 +1,61 @@
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}McDash{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            pop: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            primary: '#FF3E00',
+            secondary: '#FFEBD6',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/877/877951.png">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+{% include 'menu/nav.html' %}
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-orange-100 to-yellow-200">
+  <form method="post" class="bg-white/70 backdrop-blur-lg p-10 rounded-2xl shadow-xl w-full max-w-md space-y-6 border border-orange-300">
+    {% csrf_token %}
+    <h2 class="text-3xl font-extrabold text-center text-primary drop-shadow">🍔 Create an Account</h2>
+    
+    <div class="space-y-4">
+      {% for field in form %}
+        <div>
+          <label class="block text-sm font-semibold text-gray-700">{{ field.label_tag }}</label>
+          {{ field }}
+          {% if field.errors %}
+            <p class="text-red-500 text-xs mt-1">{{ field.errors|striptags }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    
+    <button class="w-full bg-primary hover:bg-orange-600 text-white font-semibold py-2 rounded-xl transition-all shadow">
+      Sign Up
+    </button>
+
+    <p class="text-sm text-center text-gray-600">
+      Already registered?
+      <a href="{% url 'login' %}" class="text-orange-600 font-semibold underline hover:text-orange-800">Login here</a>
+    </p>
+  </form>
+</div>
